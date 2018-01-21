@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $tasks = array(
     array(
-        'classname' => 'block_newblock\task\dosomething',
+        'classname' => 'block_newblock\task\do_something',
         'blocking' => 0,
         'minute' => '30',
         'hour' => '17',

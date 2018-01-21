@@ -25,7 +25,7 @@
 namespace block_newblock\task;
 defined('MOODLE_INTERNAL') || die();
 
-class dosomething extends \core\task\scheduled_task {
+class do_something extends \core\task\scheduled_task {
 		
 	public function get_name() {
         // Shown in admin screens
