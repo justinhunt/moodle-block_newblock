@@ -46,30 +46,29 @@ class block_newblock extends block_base {
         $this->content->items = array();
         $this->content->icons = array();
         $this->content->footer = '';
+        $this->content->text = '';
 
-        // user/index.php expect course context, so get one if page has module context.
-        $currentcontext = $this->page->context->get_course_context(false);
+        //get the course this block is on
+        $course = $this->page->course;
 
-        if (! empty($this->config->text)) {
-            $this->content->text = $this->config->text;
-        }
 
-        $this->content = '';
-        if (empty($currentcontext)) {
-            return $this->content;
-        }
-        if ($this->page->course->id == SITEID) {
-            $this->content->text .= "site context";
-        }
+        //get the block instance settings (position , id  etc)
+        $instancesettings = $this->instance;
 
-        if (! empty($this->config->text)) {
-            $this->content->text .= $this->config->text;
-        }
+        //get the admin config (that we define in settings.php)
+        $adminconfig = get_config('block_newblock');
+        //get the instance config (that we define in edit_form)
+        $localconfig = $this->config;
+        //get best config. our helper class to merge local and admin configs
+        $bestconfig = \block_newblock\common::fetch_best_config($instancesettings->id);
 
+
+        $renderer = $this->page->get_renderer('block_newblock');
+        $this->content->text = $renderer->fetch_block_content($instancesettings->id, $bestconfig, $course->id);
         return $this->content;
     }
 
-    // my moodle can only have SITEID and it's redundant here, so take it away
+    //This is a list of places where the block may or may not be added by the admin
     public function applicable_formats() {
         return array('all' => false,
                      'site' => true,
@@ -80,17 +79,11 @@ class block_newblock extends block_base {
                      'mod-quiz' => false);
     }
 
+    //Can we have more than one instance of the block?
     public function instance_allow_multiple() {
           return true;
     }
 
     function has_config() {return true;}
 
-    public function cron() {
-            mtrace( "Hey, my cron script is running" );
-             
-                 // do something
-                  
-                      return true;
-    }
 }

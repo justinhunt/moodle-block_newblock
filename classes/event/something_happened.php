@@ -14,27 +14,49 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 /**
- * Block newblock
+ * The block_newblock something happened event.
  *
  * @package    block_newblock
- * @copyright  Daniel Neis <danielneis@gmail.com>
+ * @copyright  Justin Hunt (https://poodll.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace block_newblock\event;
 defined('MOODLE_INTERNAL') || die();
-if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_heading('newblock_config_header',
-        get_string('headerconfig', 'block_newblock'),
-        get_string('descconfig', 'block_newblock')));
 
-    $settings->add(new admin_setting_configcheckbox('block_newblock/somecheck',
-        get_string('somecheck', 'block_newblock'),
-        get_string('somecheck_desc', 'block_newblock'),
-        '0'));
+/**
+ * The block_newblock something happened event class.
+ */
 
-    $settings->add(new admin_setting_configtext('block_newblock/sometext',
-        get_string('sometext', 'block_newblock'),
-        get_string('sometext_desc', 'block_newblock'),
-        'sometext', PARAM_TEXT));
+
+class something_happened extends \core\event\base {
+
+    /**
+     * Returns description of what happened.
+     *
+     * @return string
+     */
+    public function get_description() {
+        return "Something has happened.";
+    }
+
+    /**
+     * Return localised event name.
+     *
+     * @return string
+     */
+    public static function get_name() {
+        return get_string('something_happened', 'block_newblock');
+    }
+
+    /**
+     * Init method.
+     */
+    protected function init() {
+        $this->data['crud'] = 'r';
+        $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
+    }
 }
+

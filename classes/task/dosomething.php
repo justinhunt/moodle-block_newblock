@@ -15,26 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Block newblock
+ * The block_newblock scheduled task
  *
- * @package    block_newblock
- * @copyright  Daniel Neis <danielneis@gmail.com>
+ * @package    mod_newblock
+ * @copyright  Justin Hunt (https://poodll.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace block_newblock\task;
 defined('MOODLE_INTERNAL') || die();
-if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_heading('newblock_config_header',
-        get_string('headerconfig', 'block_newblock'),
-        get_string('descconfig', 'block_newblock')));
 
-    $settings->add(new admin_setting_configcheckbox('block_newblock/somecheck',
-        get_string('somecheck', 'block_newblock'),
-        get_string('somecheck_desc', 'block_newblock'),
-        '0'));
+class dosomething extends \core\task\scheduled_task {
+		
+	public function get_name() {
+        // Shown in admin screens
+        return get_string('newblock_dosomething_task', 'block_newblock');
+    }
+	
+	 /**
+     *  Run the task
+      */
+	 public function execute(){
+		$trace = new \text_progress_trace();
+		$trace->output('running the block new_block dosomething task now');
+         \block_newblock\common::do_something();
+	}
 
-    $settings->add(new admin_setting_configtext('block_newblock/sometext',
-        get_string('sometext', 'block_newblock'),
-        get_string('sometext_desc', 'block_newblock'),
-        'sometext', PARAM_TEXT));
 }
+

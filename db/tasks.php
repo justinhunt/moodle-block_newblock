@@ -15,15 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Newblock block caps.
  *
- * @package    block_newblock
- * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   block_newblock
+ * @copyright Justin Hunt <https://poodll.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018012000;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2012112900;        // Requires this Moodle version
-$plugin->component = 'block_newblock'; // Full name of the plugin (used for diagnostics)
+$tasks = array(
+    array(
+        'classname' => 'block_newblock\task\dosomething',
+        'blocking' => 0,
+        'minute' => '30',
+        'hour' => '17',
+        'day' => '1',
+        'dayofweek' => '*',
+        'month' => '*'
+    )
+);

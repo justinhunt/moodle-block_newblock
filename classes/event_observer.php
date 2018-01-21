@@ -15,26 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Block newblock
+ * Event observer for block_newblock plugin
  *
  * @package    block_newblock
- * @copyright  Daniel Neis <danielneis@gmail.com>
+ * @copyright  Justin Hunt (https://poodll.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace block_newblock;
 
 defined('MOODLE_INTERNAL') || die();
-if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_heading('newblock_config_header',
-        get_string('headerconfig', 'block_newblock'),
-        get_string('descconfig', 'block_newblock')));
 
-    $settings->add(new admin_setting_configcheckbox('block_newblock/somecheck',
-        get_string('somecheck', 'block_newblock'),
-        get_string('somecheck_desc', 'block_newblock'),
-        '0'));
+class event_observer{
 
-    $settings->add(new admin_setting_configtext('block_newblock/sometext',
-        get_string('sometext', 'block_newblock'),
-        get_string('sometext_desc', 'block_newblock'),
-        'sometext', PARAM_TEXT));
+    /**
+     * Triggered via course_deleted event.
+     *
+     * @param \core\event\course_deleted $event
+     * @return bool true on success
+     */
+    public static function course_deleted(\core\event\course_deleted $event) {
+		//this is just to demonstrate how to handle an event.
+		return true;
+	}
 }
