@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy Subsystem implementation for block_news_items.
+ * Privacy Subsystem implementation for block_newblock.
  *
- * @package    block_news_items
- * @copyright  2018 Zig Tan <zig@moodle.com>
+ * @package    block_newblock
+ * @copyright  2018 Justin Hunt <justin@poodll.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace block_news_items\privacy;
+namespace block_newblock\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Privacy Subsystem for block_news_items implementing null_provider.
+ * Privacy Subsystem for block_newblock implementing null_provider.
  *
- * @copyright  2018 Zig Tan <zig@moodle.com>
+ * @copyright  2018 Justin Hunt <justin@poodll.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\null_provider {
