@@ -43,3 +43,4 @@ $string['dosomething'] = 'Do something';
 $string['didsomething'] = 'Did something';
 $string['triggeralert'] = 'Trigger alert';
 $string['triggeralert_message'] = 'You triggered something';
+$string['privacy:metadata'] = 'The newblock block does not store any user data.';
