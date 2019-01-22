@@ -26,16 +26,16 @@ use block_newblock\constants;
 
 defined('MOODLE_INTERNAL') || die();
 if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_heading('newblock_config_header',
+    $settings->add(new admin_setting_heading(constants::M_COMP . '_config_header',
         get_string('headerconfig', constants::M_COMP),
         get_string('descconfig', constants::M_COMP)));
 
-    $settings->add(new admin_setting_configcheckbox('block_newblock/somecheck',
+    $settings->add(new admin_setting_configcheckbox(constants::M_COMP . '/somecheck',
         get_string('somecheck', constants::M_COMP),
         get_string('somecheck_desc', constants::M_COMP),
         '0'));
 
-    $settings->add(new admin_setting_configtext('block_newblock/sometext',
+    $settings->add(new admin_setting_configtext(constants::M_COMP . '/sometext',
         get_string('sometext', constants::M_COMP),
         get_string('sometext_desc', constants::M_COMP),
         'sometext', PARAM_TEXT));

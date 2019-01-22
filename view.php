@@ -29,6 +29,7 @@
  */
 
 use block_newblock\constants;
+use block_newblock\common;
 
 require('../../config.php');
 
@@ -40,14 +41,14 @@ $dosomething = optional_param('dosomething',0,PARAM_INT);
 //set the url of the $PAGE
 //note we do this before require_login preferably
 //so Moodle will send user back here if it bounces them off to login first
-$PAGE->set_url('/blocks/newblock/view.php',array('blockid'=>$blockid, 'courseid'=>$courseid, 'dosomething'=>$dosomething));
+$PAGE->set_url(constants::M_URL . '/view.php',array('blockid'=>$blockid, 'courseid'=>$courseid, 'dosomething'=>$dosomething));
 $course = get_course($courseid);
 require_login($course);
 
 
 if($dosomething){
-    \block_newblock\common::do_something($blockid);
-    $redirecturl = new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid, 'courseid'=>$courseid));
+    ommon::do_something($blockid);
+    $redirecturl = new moodle_url(constants::M_URL . '/view.php',array('blockid'=>$blockid, 'courseid'=>$courseid));
     redirect($redirecturl,get_string('didsomething', constants::M_COMP),10);
 }
 
@@ -63,7 +64,7 @@ $PAGE->navbar->add(get_string('pluginname', constants::M_COMP));
 $renderer = $PAGE->get_renderer(constants::M_COMP);
 
 //fetch config. using our helper class which merges admin and local settings
-$config=\block_newblock\common::fetch_best_config($blockid);
+$config=common::fetch_best_config($blockid);
 
 //display the content of this page from our nice renderer
 $renderer->display_view_page($blockid,$courseid);

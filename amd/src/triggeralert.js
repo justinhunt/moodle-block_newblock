@@ -1,5 +1,5 @@
 /* jshint ignore:start */
-define(['jquery','core/log'], function($, log) {
+define(['jquery','core/log'], function($, log, def) {
 
     "use strict";
     log.debug('Trigger alert button: initialising');
@@ -25,7 +25,7 @@ define(['jquery','core/log'], function($, log) {
 
             triggerbutton.click(function (e) {
                 e.preventDefault();
-                var message = M.util.get_string('triggeralert_message', 'block_newblock');
+                var message = M.util.get_string('triggeralert_message', def.compoment);
                 alert(message);
             });
         }

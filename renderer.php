@@ -44,7 +44,7 @@ class block_newblock_renderer extends plugin_renderer_base {
         $content .= '<br />' . $localconfig->sometext . '<br />';
 
         //show our link to the view page
-        $link = new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid,'courseid'=>$courseid));
+        $link = new moodle_url(constants::M_URL . '/view.php',array('blockid'=>$blockid,'courseid'=>$courseid));
         $content .= html_writer::link($link, get_string('gotoviewpage', constants::M_COMP));
         return $content;
     }
@@ -69,22 +69,22 @@ class block_newblock_renderer extends plugin_renderer_base {
     function fetch_dosomething_button($blockid, $courseid){
         //single button is a Moodle helper class that creates simple form with a single button for you
         $triggerbutton = new single_button(
-            new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid,'courseid'=>$courseid,'dosomething'=>1)),
+            new moodle_url(constants::M_URL . '/view.php',array('blockid'=>$blockid,'courseid'=>$courseid,'dosomething'=>1)),
             get_string('dosomething', constants::M_COMP), 'get');
 
-        return html_writer::div( $this->render($triggerbutton),'block_newblock_triggerbutton');
+        return html_writer::div( $this->render($triggerbutton),constants::M_COMP . '_triggerbutton');
     }
     function fetch_triggeralert_button(){
         //these are attributes for a simple html button.
         $attributes = array();
         $attributes['type']='button';
-        $attributes['id']=html_writer::random_id('block_newblock_');
-        $attributes['class']='block_newblock_triggerbutton';
+        $attributes['id']=html_writer::random_id(constants::M_COMP . '_');
+        $attributes['class']=constants::M_COMP . '_triggerbutton';
         $button = html_writer::tag('button',get_string('triggeralert', constants::M_COMP),$attributes);
 
         //we attach an event to it. The event comes from a JS AMD module also in this plugin
         $opts=array('buttonid' => $attributes['id']);
-        $this->page->requires->js_call_amd("block_newblock/triggeralert", 'init', array($opts));
+        $this->page->requires->js_call_amd(constants::M_COMP . "/triggeralert", 'init', array($opts));
 
         //we want to make our language strings available to our JS button too
         //strings for JS
