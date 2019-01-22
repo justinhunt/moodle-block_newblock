@@ -16,6 +16,8 @@
 
 namespace block_newblock;
 
+use block_newblock\constants;
+
 defined('MOODLE_INTERNAL') || die();
 
 
@@ -56,7 +58,6 @@ class common
 
             $eventdata = array(
                 'context' => \context_block::instance($blockid),
-                'context' => \context_block::instance($blockid),
             'userid' => $USER->id,
             'relateduserid'=> 0,
             'other' => $config->sometext
@@ -70,7 +71,7 @@ class common
     public static function fetch_best_config($blockid=0){
 	    global $DB;
 
-        $config = get_config('block_newblock');
+        $config = get_config(constants::M_COMP);
         $local_config = false;
         if($blockid > 0) {
             $configdata = $DB->get_field('block_instances', 'configdata', array('id' => $blockid));

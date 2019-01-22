@@ -24,6 +24,8 @@
  */
 
 namespace block_newblock\event;
+use block_newblock\constants;
+
 defined('MOODLE_INTERNAL') || die();
 
 /**
@@ -48,7 +50,7 @@ class something_happened extends \core\event\base {
      * @return string
      */
     public static function get_name() {
-        return get_string('something_happened', 'block_newblock');
+        return get_string('something_happened', constants::M_COMP);
     }
 
     /**

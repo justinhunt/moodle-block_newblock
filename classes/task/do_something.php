@@ -23,13 +23,16 @@
  */
 
 namespace block_newblock\task;
+use block_newblock\constants;
+
+
 defined('MOODLE_INTERNAL') || die();
 
 class do_something extends \core\task\scheduled_task {
 		
 	public function get_name() {
         // Shown in admin screens
-        return get_string('newblock_dosomething_task', 'block_newblock');
+        return get_string('newblock_dosomething_task', constants::M_COMP);
     }
 	
 	 /**

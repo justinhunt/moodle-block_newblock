@@ -1,5 +1,7 @@
 <?php
 
+use block_newblock\constants;
+
 class block_newblock_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
@@ -8,12 +10,12 @@ class block_newblock_edit_form extends block_edit_form {
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
         //get admin settings config
-        $config =get_config('block_newblock');
+        $config =get_config(constants::M_COMP);
 
         // A sample string variable with a default value.
         //we need to prefix all our settings with config_ for the block to do its magic of saving and fetching them
         //for us
-        $mform->addElement('text', 'config_sometext', get_string('blockstring', 'block_newblock'));
+        $mform->addElement('text', 'config_sometext', get_string('blockstring', constants::M_COMP));
         $mform->setDefault('config_sometext', $config->sometext);
         $mform->setType('config_sometext', PARAM_TEXT);
 

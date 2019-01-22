@@ -21,13 +21,15 @@
 ///////////////////////////////////////////////////////////////////////////
 
 /**
- * Block new_template view.php
- * @package   block_newtemplate
+ * Block new_block view.php
+ * @package   block_newblock
  * @copyright 2018 Justin Hunt (https://poodll.com)
  * @author    Justin Hunt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
+use block_newblock\constants;
+
 require('../../config.php');
 
 //fetch the blockid whose settings we should use
@@ -46,7 +48,7 @@ require_login($course);
 if($dosomething){
     \block_newblock\common::do_something($blockid);
     $redirecturl = new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid, 'courseid'=>$courseid));
-    redirect($redirecturl,get_string('didsomething','block_newblock'),10);
+    redirect($redirecturl,get_string('didsomething', constants::M_COMP),10);
 }
 
 
@@ -55,10 +57,10 @@ $PAGE->set_course($course);
 $PAGE->set_context($coursecontext);
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('course');
-$PAGE->set_title(get_string('pluginname', 'block_newblock'));
-$PAGE->navbar->add(get_string('pluginname', 'block_newblock'));
+$PAGE->set_title(get_string('pluginname', constants::M_COMP));
+$PAGE->navbar->add(get_string('pluginname', constants::M_COMP));
 
-$renderer = $PAGE->get_renderer('block_newblock');
+$renderer = $PAGE->get_renderer(constants::M_COMP);
 
 //fetch config. using our helper class which merges admin and local settings
 $config=\block_newblock\common::fetch_best_config($blockid);

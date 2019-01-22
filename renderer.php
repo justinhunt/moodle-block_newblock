@@ -18,6 +18,8 @@
 // You should have received a copy of the GNU General Public License     //
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.       //
 //                                                                       //
+
+use block_newblock\constants;
 ///////////////////////////////////////////////////////////////////////////
 
 /**
@@ -36,14 +38,14 @@ class block_newblock_renderer extends plugin_renderer_base {
 
         //show our intro text
         $content = '';
-        $content .= '<br />' . get_string('welcomeuser','block_newblock',$USER) . '<br />';
+        $content .= '<br />' . get_string('welcomeuser', constants::M_COMP,$USER) . '<br />';
 
         //show "sometext"  from our settings
         $content .= '<br />' . $localconfig->sometext . '<br />';
 
         //show our link to the view page
         $link = new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid,'courseid'=>$courseid));
-        $content .= html_writer::link($link, get_string('gotoviewpage', 'block_newblock'));
+        $content .= html_writer::link($link, get_string('gotoviewpage', constants::M_COMP));
         return $content;
     }
 
@@ -52,7 +54,7 @@ class block_newblock_renderer extends plugin_renderer_base {
         global $USER;
 
         $content = '';
-        $content .= '<br />' . get_string('welcomeuser','block_newblock',$USER) . '<br />';
+        $content .= '<br />' . get_string('welcomeuser', constants::M_COMP,$USER) . '<br />';
         $content .= $this->fetch_dosomething_button($blockid,$courseid);
         $content .= $this->fetch_triggeralert_button();
 
@@ -68,7 +70,7 @@ class block_newblock_renderer extends plugin_renderer_base {
         //single button is a Moodle helper class that creates simple form with a single button for you
         $triggerbutton = new single_button(
             new moodle_url('/blocks/newblock/view.php',array('blockid'=>$blockid,'courseid'=>$courseid,'dosomething'=>1)),
-            get_string('dosomething','block_newblock'), 'get');
+            get_string('dosomething', constants::M_COMP), 'get');
 
         return html_writer::div( $this->render($triggerbutton),'block_newblock_triggerbutton');
     }
@@ -78,7 +80,7 @@ class block_newblock_renderer extends plugin_renderer_base {
         $attributes['type']='button';
         $attributes['id']=html_writer::random_id('block_newblock_');
         $attributes['class']='block_newblock_triggerbutton';
-        $button = html_writer::tag('button',get_string('triggeralert','block_newblock'),$attributes);
+        $button = html_writer::tag('button',get_string('triggeralert', constants::M_COMP),$attributes);
 
         //we attach an event to it. The event comes from a JS AMD module also in this plugin
         $opts=array('buttonid' => $attributes['id']);
@@ -89,7 +91,7 @@ class block_newblock_renderer extends plugin_renderer_base {
         $this->page->requires->strings_for_js(array(
             'triggeralert_message'
         ),
-            'block_newblock');
+            constants::M_COMP);
 
         //finally return our button for display
         return $button;

@@ -22,19 +22,21 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use block_newblock\constants;
+
 defined('MOODLE_INTERNAL') || die();
 if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_heading('newblock_config_header',
-        get_string('headerconfig', 'block_newblock'),
-        get_string('descconfig', 'block_newblock')));
+        get_string('headerconfig', constants::M_COMP),
+        get_string('descconfig', constants::M_COMP)));
 
     $settings->add(new admin_setting_configcheckbox('block_newblock/somecheck',
-        get_string('somecheck', 'block_newblock'),
-        get_string('somecheck_desc', 'block_newblock'),
+        get_string('somecheck', constants::M_COMP),
+        get_string('somecheck_desc', constants::M_COMP),
         '0'));
 
     $settings->add(new admin_setting_configtext('block_newblock/sometext',
-        get_string('sometext', 'block_newblock'),
-        get_string('sometext_desc', 'block_newblock'),
+        get_string('sometext', constants::M_COMP),
+        get_string('sometext_desc', constants::M_COMP),
         'sometext', PARAM_TEXT));
 }

@@ -24,9 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use block_newblock\constants;
+
 $capabilities = array(
 
-    'block/newblock:myaddinstance' => array(
+    'block/' . constants::M_NAME. ':myaddinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
@@ -36,9 +38,8 @@ $capabilities = array(
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
 
-    'block/newblock:addinstance' => array(
+    'block/' . constants::M_NAME. ':addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
-
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(

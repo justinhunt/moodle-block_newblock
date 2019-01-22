@@ -24,10 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use block_newblock\constants;
+use block_newblock\common;
+
 class block_newblock extends block_base {
 
     function init() {
-        $this->title = get_string('pluginname', 'block_newblock');
+        $this->title = get_string('pluginname', constants::M_COMP);
     }
 
     function get_content() {
@@ -56,14 +59,14 @@ class block_newblock extends block_base {
         $instancesettings = $this->instance;
 
         //get the admin config (that we define in settings.php)
-        $adminconfig = get_config('block_newblock');
+        $adminconfig = get_config(constants::M_COMP);
         //get the instance config (that we define in edit_form)
         $localconfig = $this->config;
         //get best config. our helper class to merge local and admin configs
-        $bestconfig = \block_newblock\common::fetch_best_config($instancesettings->id);
+        $bestconfig = common::fetch_best_config($instancesettings->id);
 
 
-        $renderer = $this->page->get_renderer('block_newblock');
+        $renderer = $this->page->get_renderer(constants::M_COMP);
         $this->content->text = $renderer->fetch_block_content($instancesettings->id, $bestconfig, $course->id);
         return $this->content;
     }

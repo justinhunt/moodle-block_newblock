@@ -22,11 +22,14 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use block_newblock\constants;
+
+
 defined('MOODLE_INTERNAL') || die();
 
 $tasks = array(
     array(
-        'classname' => 'block_newblock\task\do_something',
+        'classname' => constants::M_COMP . '\task\do_something',
         'blocking' => 0,
         'minute' => '30',
         'hour' => '17',
